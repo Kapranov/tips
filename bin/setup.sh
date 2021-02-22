@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#
+# Sets up your machine for development.
+
+echo "-------------------------------"
+echo "Installing dependencies..."
+echo "-------------------------------"
+
+mix local.hex --force || { echo "Could not install Hex!"; exit 1; }
+mix deps.get || { echo "Could not install dependencies!"; exit 1;}
+
+echo "-------------------------------"
+echo "Running tests..."
+echo "-------------------------------"
+bin/test.sh || { exit 1; }
