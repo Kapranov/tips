@@ -3,6 +3,7 @@ defmodule Tips.Profiler do
   Simple benchmark helper which relies on `:timer.tc/1`
   """
 
+  @spec run(atom, integer, integer) :: String.t()
   def run(module, operations_count, concurrency_level \\ 1) do
     IO.puts("")
     module.start_link
@@ -21,6 +22,7 @@ defmodule Tips.Profiler do
   @doc """
   We measure the execution time of the entire operation
   """
+  @spec execution_time(fun, integer, integer) :: integer
   def execution_time(fun, operations_count, concurrency_level) do
     {time, _} =
       :timer.tc(fn ->
