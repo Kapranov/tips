@@ -1,5 +1,7 @@
 defmodule Tips.WebServer do
-  @moduledoc false
+  @moduledoc """
+  Simple html render view
+  """
 
   def index do
     :timer.sleep(100)
