@@ -3,7 +3,7 @@ defmodule Tips.Comprehensions do
   Comprehensions are syntactic sugar: into the `for` special form.
   """
 
-  @doc"""
+  @doc """
   Returns all the even numbers up to a given `number`.
 
   Returns a list of numbers.
@@ -24,7 +24,7 @@ defmodule Tips.Comprehensions do
     for n <- 1..number, n > 0, rem(n, 2) == 0, do: n
   end
 
-  @doc"""
+  @doc """
   Joins a `list` of binaries together with a `separator`
 
   Returns a binary.

@@ -33,7 +33,7 @@ defmodule Tips.Stream do
   @spec get_month :: :ok
   def get_month do
     month()
-    |> Stream.run
+    |> Stream.run()
   end
 
   @doc """
@@ -48,13 +48,14 @@ defmodule Tips.Stream do
   @spec sample(String.t()) :: [String.t()]
   def sample(name \\ "sample.txt") do
     path = Path.join(:code.priv_dir(:tips), name)
+
     File.stream!(path)
     |> Stream.take_every(2)
     |> Stream.filter(&String.starts_with?(&1, "d"))
-    |> Stream.map(fn(word) ->
+    |> Stream.map(fn word ->
       word
-      |> String.trim
-      |> String.capitalize
+      |> String.trim()
+      |> String.capitalize()
     end)
     |> Enum.sort_by(&String.length/1)
   end

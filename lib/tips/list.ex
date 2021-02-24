@@ -93,7 +93,7 @@ defmodule Tips.List do
   @spec reduce(list, fun) :: integer | nil
   def reduce(list, fun), do: do_reduce(list, fun)
 
-  @doc"""
+  @doc """
   Reverses the contents of a given `list`.
 
   Returns a list.
@@ -118,6 +118,7 @@ defmodule Tips.List do
 
   @spec do_each(list, fun) :: :ok
   defp do_each([], _fun), do: :ok
+
   defp do_each([head | tail], fun) do
     fun.(head)
     do_each(tail, fun)
@@ -125,6 +126,7 @@ defmodule Tips.List do
 
   @spec do_map(list, fun, []) :: :ok
   defp do_map([], _fun, acc), do: :lists.reverse(acc)
+
   defp do_map([head | tail], fun, acc) do
     result = fun.(head)
     acc = [result | acc]
@@ -133,6 +135,7 @@ defmodule Tips.List do
 
   @spec do_sum(list, integer) :: integer
   defp do_sum([], count), do: count
+
   defp do_sum([head | tail], count) do
     count = count + head
     do_sum(tail, count)
@@ -145,6 +148,7 @@ defmodule Tips.List do
 
   @spec do_reduce(list, integer, fun) :: integer | nil
   defp do_reduce([], acc, _fun), do: acc
+
   defp do_reduce([head | tail], acc, fun) do
     acc = fun.(head, acc)
     do_reduce(tail, acc, fun)
@@ -156,6 +160,7 @@ defmodule Tips.List do
 
   @spec do_reverse(list, list) :: list
   defp do_reverse([], acc), do: acc
+
   defp do_reverse([head | tail], acc) do
     acc = [head | acc]
     do_reverse(tail, acc)

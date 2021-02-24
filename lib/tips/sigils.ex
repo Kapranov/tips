@@ -19,7 +19,7 @@ defmodule Tips.Sigils do
   @spec sigil_u(String.t(), any) :: [String.t()]
   def sigil_u(content, _opts) do
     content
-    |> String.split
+    |> String.split()
     |> Enum.map(&String.upcase/1)
   end
 
