@@ -1,6 +1,6 @@
 defmodule Tips.Stream do
   @moduledoc """
-  Module thait an implementation Elixir's `stream`.
+  Module that an implementation Elixir's `stream`.
   """
 
   @monthes ~w(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec)
@@ -8,7 +8,7 @@ defmodule Tips.Stream do
   @doc """
   Create a Stream of all the months in a year.
 
-  ## Example
+  ## Example:
 
       iex> Tips.Stream.month
       #Stream<[
@@ -25,7 +25,7 @@ defmodule Tips.Stream do
   @doc """
   Render created a stream of all the months in a year
 
-  ## Example
+  ## Example:
 
       iex> Tips.Stream.get_month
       :ok
@@ -40,7 +40,7 @@ defmodule Tips.Stream do
   Write a function that returns every other word in the `priv/sample.txt`
   file which starts with “D”, sorted by length and capitalized.
 
-  ## Example
+  ## Example:
 
       iex> Tips.Stream.sample
       ["Desk", "Drum", "Dung", "Dress", "Drill", "Drink", "Diamond", "Data base"]

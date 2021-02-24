@@ -16,7 +16,7 @@ defmodule Tips.EtsPageCache do
   @doc """
   Start a new EtsPageCache process.
 
-  ## Example
+  ## Example:
 
       iex> {:ok, pid} = Tips.EtsPageCache.start_link
       {:ok, pid}
@@ -31,7 +31,7 @@ defmodule Tips.EtsPageCache do
   a key, and a lambda. If you have something cached for the key, you'll return
   the value. Otherwise, you must forward the request to cache process.
 
-  ## Example
+  ## Example:
 
       iex> Tips.EtsPageCache.cached(:index, &Tips.WebServer.index/0)
       "<html><h2>Crazy Nancy Pelosi Releases Bizarre Video on $15 Minimum Wage.</h2></html>"

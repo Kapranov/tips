@@ -24,7 +24,7 @@ defmodule Tips.List do
 
   Returns `:ok`.
 
-  ## Example
+  ## Example:
 
       iex> Tips.List.each([], fn(x) -> x end)
       :ok
@@ -45,7 +45,7 @@ defmodule Tips.List do
   Returns a list of results based on calling function `fun`
   on each member of the given `list`.
 
-  ## Example
+  ## Example:
 
       iex> Tips.List.map([], fn(x) -> x end)
       []

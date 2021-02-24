@@ -5,6 +5,7 @@ defmodule Tips.PageCache do
 
   @name __MODULE__
 
+  @spec start_link :: {:ok, pid}
   def start_link, do: GenServer.start_link(@name, [], name: :page_cache)
 
   def cached(key, fun), do: GenServer.call(:page_cache, {:cached, key, fun})

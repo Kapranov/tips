@@ -15,7 +15,7 @@ defmodule Tips.User do
 
   - `user` - A User struct
 
-  ## Examples
+  ## Example:
 
       iex> user = %Tips.User{ name: "Edward Witten" }
       iex> Tips.User.first_name(user)
@@ -48,7 +48,7 @@ defmodule Tips.User do
 
   - `user` - A User struct
 
-  ## Examples
+  ## Example:
 
       iex> user = %Tips.User{ name: "Edward Witten" }
       iex> Tips.User.last_name(user)

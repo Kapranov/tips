@@ -1,6 +1,6 @@
 defmodule Tips.Sigils do
   @moduledoc """
-  Module thait an implementation Elixir's `sigil`-related.
+  Module that an implementation Elixir's `sigil`-related.
   """
 
   import Kernel, except: [sigil_r: 2]
@@ -11,7 +11,7 @@ defmodule Tips.Sigils do
 
   Returns a list of upcased words.
 
-  ## Example
+  ## Example:
 
       iex> Tips.Sigils.sigil_u("hello", nil)
       ["HELLO"]
@@ -27,7 +27,7 @@ defmodule Tips.Sigils do
   Overrides the ~r sigil to reverse a string rather than have return
   a regular expression.
 
-  ## Example
+  ## Example:
 
       iex> Tips.Sigils.sigil_r("hello", nil)
       "olleh"
@@ -40,7 +40,7 @@ defmodule Tips.Sigils do
 
   Returns "olleh".
 
-  ## Example
+  ## Example:
 
       iex> Tips.Sigils.hello_sigil_r
       "olleh"
