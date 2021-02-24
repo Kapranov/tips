@@ -5,19 +5,32 @@ defmodule Tips.Stream do
 
   @monthes ~w(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec)
 
-  @spec month :: fun
   @doc """
   Create a Stream of all the months in a year.
+
+  ## Example
+
+      iex> Tips.Stream.month
+      #Stream<[
+        enum: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        funs: [#Function<38.92508066/1 in Stream.each/2>]
+      ]>
   """
+  @spec month :: fun
   def month do
     @monthes
     |> Stream.each(&IO.puts/1)
   end
 
-  @spec get_month :: :ok
   @doc """
   Render created a stream of all the months in a year
+
+  ## Example
+
+      iex> Tips.Stream.get_month
+      :ok
   """
+  @spec get_month :: :ok
   def get_month do
     month()
     |> Stream.run
@@ -26,6 +39,11 @@ defmodule Tips.Stream do
   @doc """
   Write a function that returns every other word in the `priv/sample.txt`
   file which starts with “D”, sorted by length and capitalized.
+
+  ## Example
+
+      iex> Tips.Stream.sample
+      ["Desk", "Drum", "Dung", "Dress", "Drill", "Drink", "Diamond", "Data base"]
   """
   @spec sample(String.t()) :: [String.t()]
   def sample(name \\ "sample.txt") do
