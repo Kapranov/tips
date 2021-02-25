@@ -9,21 +9,19 @@ defmodule Tips.TodoList do
   ## Example:
 
       iex> struct = %Tips.TodoItem{description: "first name", name: "oleg"}
-      iex> pid = Tips.TodoList.start(struct)
-      pid
+      iex> Tips.TodoList.start_link([struct])
+      {:ok, pid}
   """
-  @spec start(%Tips.TodoItem{description: String.t(), name: String.t()}) :: :ok
-  def start(list) do
-     {:ok, todo_list } = GenServer.start(@name, list, name: @name)
-     todo_list
+  @spec start_link([%Tips.TodoItem{description: String.t(), name: String.t()}]) :: :ok
+  def start_link(list) do
+    GenServer.start(@name, list, name: @name)
   end
 
   @doc """
   ## Example:
 
       iex> struct = %Tips.TodoItem{description: "first name", name: "oleg"}
-      iex> pid = Tips.TodoList.start(struct)
-      pid
+      iex> {Ok, pid} = Tips.TodoList.start_link([struct])
       iex> struct = %Tips.TodoItem{name: "witten", description: "last name"}
       iex> Tips.TodoList.add_item(pid, struct)
       :ok
@@ -37,8 +35,7 @@ defmodule Tips.TodoList do
   ## Example:
 
       iex> struct = %Tips.TodoItem{description: "first name", name: "oleg"}
-      iex> pid = Tips.TodoList.start(struct)
-      pid
+      iex> {:ok, pid} = Tips.TodoList.start_link([struct])
       iex> struct = %Tips.TodoItem{name: "witten", description: "last name"}
       iex> Tips.TodoList.add_item(pid, struct)
       :ok
@@ -50,7 +47,7 @@ defmodule Tips.TodoList do
       iex> Tips.TodoList.remove_item(pid, struct.name)
       :ok
       iex> Tips.TodoList.show(pid)
-      %Tips.TodoItem{description: "first name", name: "oleg"}
+      [%Tips.TodoItem{description: "first name", name: "oleg"}]
   """
   @spec remove_item(pid, String.t()) :: :ok
   def remove_item(list, item_name) do
@@ -61,22 +58,24 @@ defmodule Tips.TodoList do
   ## Example:
 
       iex> struct = %Tips.TodoItem{description: "first name", name: "oleg"}
-      iex> pid = Tips.TodoList.start(struct)
-      pid
+      iex> {:ok, pid} = Tips.TodoList.start_link([struct])
       iex> Tips.TodoList.show(pid)
-      %Tips.TodoItem{description: "first name", name: "oleg"}
+      [%Tips.TodoItem{description: "first name", name: "oleg"}]
   """
-  @spec show(pid) :: [%Tips.TodoItem{description: String.t(), name: String.t()}] | %Tips.TodoItem{description: String.t(), name: String.t()}
+  @spec show(pid) :: [%Tips.TodoItem{description: String.t(), name: String.t()}]
   def show(list) do
     GenServer.call(list, :show)
   end
 
+  @impl true
   def init(list), do: { :ok, list }
 
+  @impl true
   def handle_cast({ :add, item }, list) do
-    { :noreply, [item] ++ [list] }
+    { :noreply, [item | list] }
   end
 
+  @impl true
   def handle_cast({ :remove, item_name }, list) do
     index =
       Enum.find_index(list, fn(item) ->
@@ -85,6 +84,7 @@ defmodule Tips.TodoList do
     { :noreply, List.delete_at(list, index) }
   end
 
+  @impl true
   def handle_call(:show, _from, list) do
     { :reply, list, list }
   end
