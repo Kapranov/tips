@@ -13,7 +13,7 @@ defmodule Tips.BankAccountStruct do
   """
   @spec new(integer) :: %Tips.BankAccountStruct{balance: integer}
   def new(balance) do
-     %@name{ balance: balance }
+    %@name{balance: balance}
   end
 
   @doc """
@@ -24,9 +24,11 @@ defmodule Tips.BankAccountStruct do
       iex> Tips.BankAccountStruct.deposit(account, 99)
       %Tips.BankAccountStruct{balance: 199}
   """
-  @spec deposit(%Tips.BankAccountStruct{balance: integer}, integer) :: %Tips.BankAccountStruct{balance: integer}
+  @spec deposit(%Tips.BankAccountStruct{balance: integer}, integer) :: %Tips.BankAccountStruct{
+          balance: integer
+        }
   def deposit(account, amount) do
-    %{ account | balance: account.balance + amount }
+    %{account | balance: account.balance + amount}
   end
 
   @doc """
@@ -37,9 +39,11 @@ defmodule Tips.BankAccountStruct do
       iex> Tips.BankAccountStruct.withdraw(account, 99)
       %Tips.BankAccountStruct{balance: 1}
   """
-  @spec withdraw(%Tips.BankAccountStruct{balance: integer}, integer) :: %Tips.BankAccountStruct{balance: integer}
+  @spec withdraw(%Tips.BankAccountStruct{balance: integer}, integer) :: %Tips.BankAccountStruct{
+          balance: integer
+        }
   def withdraw(account, amount) do
-    %{ account | balance: account.balance - amount }
+    %{account | balance: account.balance - amount}
   end
 
   @doc """

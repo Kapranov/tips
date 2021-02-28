@@ -12,7 +12,9 @@ defmodule Mix.Tasks.Encrypt do
 
   @spec run([String.t()]) :: String.t()
   def run(args) do
-    {opts, _, _} = OptionParser.parse(args, switches: [config_override: :string], aliases: [t: :text])
+    {opts, _, _} =
+      OptionParser.parse(args, switches: [config_override: :string], aliases: [t: :text])
+
     IO.puts(Tips.Crypto.Encryptor.encrypt(opts[:text]))
   end
 end

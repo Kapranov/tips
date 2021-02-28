@@ -69,35 +69,35 @@ defmodule Tips.BankAccount do
   def init(balance), do: {:ok, balance}
 
   def handle_cast({:deposit, amount}, balance) do
-    if amount > (balance + 100) do
-      { :noreply, balance }
+    if amount > balance + 100 do
+      {:noreply, balance}
     else
-      { :noreply, (balance + amount) }
+      {:noreply, balance + amount}
     end
   end
 
   def handle_cast({:withdraw, amount}, balance) do
-    if amount > (balance - 10) do
-      { :noreply, balance}
+    if amount > balance - 10 do
+      {:noreply, balance}
     else
-      { :noreply, (balance - amount) }
+      {:noreply, balance - amount}
     end
   end
 
   def handle_call(:balance, _from, balance) do
-    { :reply, balance, balance }
+    {:reply, balance, balance}
   end
 
-  def handle_message({ :deposit, amount }, _from, balance) do
+  def handle_message({:deposit, amount}, _from, balance) do
     balance + amount
   end
 
-  def handle_message({ :withdraw, amount }, _from, balance) do
+  def handle_message({:withdraw, amount}, _from, balance) do
     balance - amount
   end
 
   def handle_message(:balance, from, balance) do
-    send from, { :balance, balance }
+    send(from, {:balance, balance})
     balance
   end
 end

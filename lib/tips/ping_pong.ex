@@ -8,6 +8,6 @@ defmodule Tips.PingPong do
   Method that returns :pong when it receives :ping,
   and returns :ping when it receives :pong
   """
-  def handle_message(:ping, from), do: send from, :pong
-  def handle_message(:pong, from), do: send from, :ping
+  def handle_message(:ping, from), do: send(from, :pong)
+  def handle_message(:pong, from), do: send(from, :ping)
 end

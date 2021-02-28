@@ -24,15 +24,15 @@ defmodule Tips.Parallel do
 
   @spec spawn_process(integer, pid, fun) :: pid
   defp spawn_process(item, parent, fun) do
-    spawn_link fn ->
-      send parent, { self(), fun.(item) }
-    end
+    spawn_link(fn ->
+      send(parent, {self(), fun.(item)})
+    end)
   end
 
   @spec await(pid) :: integer
   defp await(pid) do
     receive do
-      { ^pid, result } -> result
+      {^pid, result} -> result
     end
   end
 end

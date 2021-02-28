@@ -41,17 +41,19 @@ defmodule Tips.Server do
   @spec start(atom) :: :ok
   def start(callback_module) do
     parent = self()
-    spawn fn ->
+
+    spawn(fn ->
       loop(callback_module, parent)
-    end
+    end)
   end
 
   @spec start(atom, any) :: :ok
   def start(callback_module, state) do
     parent = self()
-    spawn fn ->
+
+    spawn(fn ->
       loop(callback_module, parent, state)
-    end
+    end)
   end
 
   @spec loop(atom) :: String.t()
@@ -60,6 +62,7 @@ defmodule Tips.Server do
       message ->
         Speaker.handle_message(message)
     end
+
     loop(Speaker)
   end
 
@@ -68,8 +71,9 @@ defmodule Tips.Server do
     receive do
       message ->
         callback_module.handle_message(message, parent)
-        |> IO.puts
+        |> IO.puts()
     end
+
     loop(callback_module, parent)
   end
 
@@ -78,7 +82,7 @@ defmodule Tips.Server do
     receive do
       message ->
         state = callback_module.handle_message(message, parent, state)
-        IO.puts state
+        IO.puts(state)
         loop(callback_module, parent, state)
     end
   end

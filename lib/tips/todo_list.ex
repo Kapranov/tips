@@ -28,7 +28,7 @@ defmodule Tips.TodoList do
   """
   @spec add_item(pid, %Tips.TodoItem{description: String.t(), name: String.t()}) :: :ok
   def add_item(list, item) do
-    GenServer.cast(list, { :add, item })
+    GenServer.cast(list, {:add, item})
   end
 
   @doc """
@@ -51,7 +51,7 @@ defmodule Tips.TodoList do
   """
   @spec remove_item(pid, String.t()) :: :ok
   def remove_item(list, item_name) do
-    GenServer.cast(list, { :remove, item_name })
+    GenServer.cast(list, {:remove, item_name})
   end
 
   @doc """
@@ -68,24 +68,25 @@ defmodule Tips.TodoList do
   end
 
   @impl true
-  def init(list), do: { :ok, list }
+  def init(list), do: {:ok, list}
 
   @impl true
-  def handle_cast({ :add, item }, list) do
-    { :noreply, [item | list] }
+  def handle_cast({:add, item}, list) do
+    {:noreply, [item | list]}
   end
 
   @impl true
-  def handle_cast({ :remove, item_name }, list) do
+  def handle_cast({:remove, item_name}, list) do
     index =
-      Enum.find_index(list, fn(item) ->
+      Enum.find_index(list, fn item ->
         item.name == item_name
       end)
-    { :noreply, List.delete_at(list, index) }
+
+    {:noreply, List.delete_at(list, index)}
   end
 
   @impl true
   def handle_call(:show, _from, list) do
-    { :reply, list, list }
+    {:reply, list, list}
   end
 end
